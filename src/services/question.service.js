@@ -10,7 +10,7 @@ async function createMultipleQuestions(examId, questions) {
     const existing = await Question.findOne({ exam: examId, question });
     if (existing) {
       throw createError(
-        409,
+        400,
         `Question "${question}" already exists under this exam`
       );
     }
@@ -104,7 +104,7 @@ async function updateQuestionById(id, data) {
   });
   if (duplicate) {
     throw createError(
-      409,
+      400,
       "Another question with this text already exists under the same exam"
     );
   }

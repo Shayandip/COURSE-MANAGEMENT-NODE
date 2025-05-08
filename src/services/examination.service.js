@@ -17,7 +17,7 @@ async function createExamination(data) {
   });
   if (checkExam) {
     throw createError(
-      409,
+      400,
       "This examination under this course is already exists!"
     );
   }
@@ -92,7 +92,7 @@ async function updateExamination(_id, data) {
     createdBy: createdBy,
   });
   if (duplicate) {
-    throw createError(409, "Another exam with this name already exists");
+    throw createError(400, "Another exam with this name already exists");
   }
   examination.name = name || examination.name;
   examination.totalMarks = totalMarks || examination.totalMarks;

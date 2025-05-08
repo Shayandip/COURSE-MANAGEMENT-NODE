@@ -5,7 +5,7 @@ async function createCourse(data) {
   const { name, description, createdBy } = data;
   const checkName = await Course.findOne({ name: name, createdBy: createdBy });
   if (checkName) {
-    throw createError(409, "This course already exists");
+    throw createError(400, "This course already exists");
   }
   const newCourseObj = new Course({ name, description, createdBy });
   const newCourse = await newCourseObj.save();
@@ -52,7 +52,7 @@ async function updateCourse(_id, data) {
     createdBy: createdBy,
   });
   if (duplicate) {
-    throw createError(409, "Another course with this name already exists");
+    throw createError(400, "Another course with this name already exists");
   }
   course.name = name || course.name;
   course.description = description || course.description;

@@ -10,7 +10,7 @@ async function assignCourse(data) {
     assignedBy: assignedBy,
   });
   if (checkDupli) {
-    throw createError(409, "This course already assigned to this user!");
+    throw createError(400, "This course already assigned to this user!");
   }
   const result = await CourseAssign.create({
     course: courseId,

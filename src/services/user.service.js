@@ -7,15 +7,15 @@ async function createUser(data) {
   const { email, password, name, gender, phone } = data;
   const checkUser = await User.findOne({ email: email });
   if (checkUser) {
-    throw createError(409, "Email already in use");
+    throw createError(400, "Email already in use");
   }
   const checkDupliName = await User.findOne({ name: name });
   if (checkDupliName) {
-    throw createError(409, "Name should be unique!");
+    throw createError(400, "Name should be unique!");
   }
   const checkDupliPhone = await User.findOne({ phone: phone });
   if (checkDupliPhone) {
-    throw createError(409, "Phone Number should be unique!");
+    throw createError(400, "Phone Number should be unique!");
   }
   const hashedPassword = await bcrypt.hash(String(password), 10);
   const newUser = new User({

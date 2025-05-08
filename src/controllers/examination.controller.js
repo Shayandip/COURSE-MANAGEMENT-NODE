@@ -90,7 +90,7 @@ async function updateExamination(req, res, next) {
       durationInMinutes,
       createdBy: req.user.id,
     });
-    return res.status(201).json({
+    return res.status(200).json({
       isSuccess: true,
       statusCode: 200,
       message: "Examination updated successfully",

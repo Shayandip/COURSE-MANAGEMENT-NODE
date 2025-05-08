@@ -9,7 +9,7 @@ async function login(credentials) {
   const { email, password, role } = credentials;
   const user = await User.findOne({ email, role });
   if (!user) {
-    throw createError(404, message.USER_NOT_FOUND);
+    throw createError(400, message.USER_NOT_FOUND);
   }
   const isPasswordValid = await bcrypt.compare(String(password), user.password);
   if (!isPasswordValid) {
@@ -25,15 +25,15 @@ async function login(credentials) {
 async function register(userData) {
   const checkAdmin = await User.findOne({ email: userData.email });
   if (checkAdmin) {
-    throw createError(409, "Email already in use");
+    throw createError(400, "Email already in use");
   }
   const checkDupliName = await User.findOne({ name: userData.name });
   if (checkDupliName) {
-    throw createError(409, "Name should be unique!");
+    throw createError(400, "Name should be unique!");
   }
   const checkDupliPhone = await User.findOne({ phone: userData.phone });
   if (checkDupliPhone) {
-    throw createError(409, "Phone Number should be unique!");
+    throw createError(400, "Phone Number should be unique!");
   }
   const hashedPassword = await bcrypt.hash(String(userData.password), 10);
   const newUser = new User({

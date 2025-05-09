@@ -42,6 +42,13 @@ async function getCourse(req, res, next) {
 async function updateCourse(req, res, next) {
   try {
     const _id = req.params.id;
+    if (!_id) {
+      return res.status(400).json({
+      isSuccess: true,
+      statusCode: 400,
+      message: "Course Id is required!",
+    });
+    }
     const { name, description } = req.body;
     const course = await courseService.updateCourse(_id, {
       name,

@@ -3,6 +3,9 @@
 **API Base URL:**  
 `http://localhost:3478/api/v1/`
 
+**API Production URL:**  
+https://course-management-node.onrender.com/api/v1/
+
 **Postman URL:**  
 https://documenter.getpostman.com/view/35119293/2sB2j96oJP
 
